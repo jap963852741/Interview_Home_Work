@@ -6,21 +6,27 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import com.jap.interviewhomework.R
 import com.jap.interviewhomework.ui.home.HomeFragment
+import com.jap.interviewhomework.ui.update.UpdateFragment
 import java.util.*
 
-class FragmentSwitchUtil constructor(context: Fragment){
+class FragmentSwitchUtil constructor(fragmanager  : FragmentManager){
 
     var mStacks: HashMap<String, Stack<Fragment>>? = null
     var mCurrentTab: String? = null
-    val TAB_HOME = "tab_home"
     var manager: FragmentManager
 
     init{
-        manager = context.parentFragmentManager
+        manager = fragmanager
+        mStacks = HashMap<String, Stack<Fragment>>()
+        mStacks!!.put(TAB_HOME, Stack<Fragment>())
+        mStacks!!.put(TAB_UPDATE, Stack<Fragment>())
     }
+
     companion object {
+        val TAB_HOME = "tab_home"
+        val TAB_UPDATE = "tab_update"
         private var INSTANCE: FragmentSwitchUtil? = null
-        fun getInstance(context: Fragment): FragmentSwitchUtil {
+        fun getInstance(context: FragmentManager): FragmentSwitchUtil {
             if (INSTANCE == null) {
                 INSTANCE = FragmentSwitchUtil(context)
             }
@@ -29,23 +35,22 @@ class FragmentSwitchUtil constructor(context: Fragment){
     }
 
     fun init(homeFragment: HomeFragment){
+        mStacks!![TAB_HOME]!!.push(homeFragment)
         val transaction: FragmentTransaction = manager.beginTransaction()
         transaction.add(R.id.nav_host_fragment, homeFragment).commit()
     }
 
+    /**
+  *    First time this tab is selected. So add first fragment of that tab.
+  *    Dont need animation, so that argument is false.
+  *    We are adding a new fragment which is not present in stack. So add to stack is true.
+  */
     fun selectedTab(tabId: String) {
         mCurrentTab = tabId
         if (mStacks!![tabId]!!.size == 0) {
-            /*
-               *    First time this tab is selected. So add first fragment of that tab.
-               *    Dont need animation, so that argument is false.
-               *    We are adding a new fragment which is not present in stack. So add to stack is true.
-               */
-//            if (tabId == TAB_DASHBOARD) {
-//                switchContent(getNowFragment(), DashboardFragment() , tabId ,true)
-//            } else if (tabId == TAB_NOTIFICATIONS) {
-//                switchContent(getNowFragment(), FavoritesFragment() , tabId ,false)
-//            }
+            if (tabId == TAB_UPDATE) {
+                switchContent(getNowFragment(), UpdateFragment() , tabId ,true)
+            }
         } else {
             switchContent(getNowFragment(),mStacks!![tabId]!!.lastElement() , tabId ,false)
         }

@@ -1,15 +1,7 @@
 package com.jap.interviewhomework.ui.home
 
-import android.content.Intent
 import android.os.Bundle
-import android.provider.AlarmClock
-import android.util.Log
 import android.view.*
-import android.view.inputmethod.InputMethodManager
-import android.widget.ArrayAdapter
-import android.widget.AutoCompleteTextView
-import android.widget.Button
-import android.widget.TextView.OnEditorActionListener
 import android.widget.Toast
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
@@ -17,14 +9,12 @@ import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.jap.interviewhomework.R
 import com.jap.interviewhomework.databinding.FragmentHomeBinding
-import com.jap.interviewhomework.ui.login.LoggedInUserView
-import com.jap.interviewhomework.ui.main.MainActivity
+import com.jap.interviewhomework.util.FragmentSwitchUtil
+import com.jap.interviewhomework.util.FragmentSwitchUtil.Companion.TAB_UPDATE
 import com.jap.interviewhomework.util.SpacesItemDecoration
 
 class HomeFragment : Fragment(){
@@ -67,12 +57,15 @@ class HomeFragment : Fragment(){
                     )
                 )
             }
-
-
         })
 
-        homeViewModel.news()
+        homeviewbinding.toolbarButton.setOnClickListener{
+            val fragmentManager = parentFragmentManager
+            val fragmentutil = FragmentSwitchUtil.getInstance(fragmentManager)
+            fragmentutil.selectedTab(TAB_UPDATE)
+        }
 
+        init()
 
         return homeviewbinding.root
     }
@@ -80,5 +73,7 @@ class HomeFragment : Fragment(){
     private fun showNewsFailed(@StringRes errorString: Int) {
         Toast.makeText(context, errorString, Toast.LENGTH_SHORT).show()
     }
-
+    private fun init(){
+        homeViewModel.news()
+    }
 }

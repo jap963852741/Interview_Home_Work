@@ -34,12 +34,10 @@ class HomeViewModel(private val newsRepository: NewsRepository) : ViewModel(){
                     temp_array.add(news)
                 }
                 _News.postValue(NewsResult(success = temp_array))
-//                _loginResult.postValue(LoginResult(success = LoggedInUserView(displayName = item.toString())))
             }
             override fun onError(e: Throwable) {
                 println("Error Occured ${e.message}")
                 _News.postValue(NewsResult(error = R.string.login_failed))
-//                _loginResult.postValue(LoginResult(error = R.string.login_failed))
             }
             override fun onComplete() {
             }
