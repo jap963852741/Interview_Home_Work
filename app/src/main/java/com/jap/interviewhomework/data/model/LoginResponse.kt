@@ -1,9 +1,11 @@
 package com.jap.interviewhomework.data.model
 
+import com.google.gson.annotations.SerializedName
 
 
 data class LoginResponse (
-    val objectID: String,
+//    @SerializedName("objectID")
+    val objectId: String,
     val username: String,
     val code: String,
     val isVerifiedReportEmail: Boolean,
@@ -12,12 +14,12 @@ data class LoginResponse (
     val updatedAt: String,
     val timezone: Long,
     val parameter: Long,
-    val acl: ACL,
+    val ACL: ACL,
     val sessionToken: String
 )
 
 data class ACL (
-    val wkuKfCAdGq: WkuKfCAdGq
+    val WkuKfCAdGq: WkuKfCAdGq
 )
 
 data class WkuKfCAdGq (

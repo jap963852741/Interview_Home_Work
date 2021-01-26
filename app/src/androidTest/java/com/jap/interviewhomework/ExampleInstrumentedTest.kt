@@ -2,16 +2,16 @@ package com.jap.interviewhomework
 
 import android.util.Log
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import androidx.test.platform.app.InstrumentationRegistry
 import com.jap.interviewhomework.data.model.ApiInterface
 import com.jap.interviewhomework.data.model.LoginResponse
-import org.junit.Assert.assertEquals
+import io.reactivex.rxjava3.core.Observer
+import io.reactivex.rxjava3.disposables.Disposable
+import io.reactivex.rxjava3.schedulers.Schedulers
 import org.junit.Test
 import org.junit.runner.RunWith
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+
 import retrofit2.Retrofit
+import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
 /**
@@ -28,25 +28,31 @@ class ExampleInstrumentedTest {
 //        assertEquals("com.jap.interviewhomework", appContext.packageName)
 
         val baseUrl = "https://watch-master-staging.herokuapp.com/api/"
-        val retrofit = Retrofit.Builder().baseUrl(baseUrl).addConverterFactory(GsonConverterFactory.create()).build()
+        val retrofit = Retrofit.Builder()
+            .baseUrl(baseUrl)
+            .addConverterFactory(GsonConverterFactory.create())
+            .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
+            .build()
         val api = retrofit.create(ApiInterface::class.java)
-        api.login("test2@qq.com", "test1234qq").enqueue(object : Callback<LoginResponse> {
-            override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
-                Log.e("onFailure",t.message.toString())
-            }
-            override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
-                Log.e("onResponse","onResponse")
-                if(response.code() == 200){ //登入成功
-                    val result = response.body()!!.toString()
-                    Log.e("result",result)
-                }else{ //登入失敗
-                    val code = response.code().toString()
-                    Log.e("code",code)
-                }
 
+        val observer: Observer<LoginResponse> = object : Observer<LoginResponse> {
+            override fun onNext(item: LoginResponse) {
+                Log.e("TAG", "next:$item")
             }
+            override fun onError(e: Throwable) {
+                println("Error Occured ${e.message}")
+            }
+            override fun onComplete() {
+            }
+            override fun onSubscribe(d: Disposable) {
+            }
+        }
 
-        })
+        api.login("test2@qq.com", "test1234qq")
+            .subscribeOn(Schedulers.newThread())
+            .observeOn(Schedulers.io())
+            .subscribe(observer)
+
 
         //等callback
         try {
@@ -57,6 +63,5 @@ class ExampleInstrumentedTest {
         Log.e("finish","finish")
 
     }
-
 
 }

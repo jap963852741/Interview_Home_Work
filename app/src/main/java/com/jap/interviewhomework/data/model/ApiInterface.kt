@@ -1,5 +1,6 @@
 package com.jap.interviewhomework.data.model
 
+import io.reactivex.rxjava3.core.Observable
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Headers
@@ -10,7 +11,7 @@ interface ApiInterface {
     @Headers("X-Parse-Application-Id:vqYuKPOkLQLYHhk4QTGsGKFwATT4mBIGREI2m8eD")
     @GET("login")
     fun login(@Query("username") username : String,
-              @Query("password") password : String): Call<LoginResponse>
+              @Query("password") password : String): Observable<LoginResponse>
 //    fun login (@Body loginRequest: LoginRequest): Call<LoginResponse>
 
 }
