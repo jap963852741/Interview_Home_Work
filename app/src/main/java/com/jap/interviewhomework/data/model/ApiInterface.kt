@@ -12,6 +12,7 @@ interface ApiInterface {
     @GET("login")
     fun login(@Query("username") username : String,
               @Query("password") password : String): Observable<LoginResponse>
-//    fun login (@Body loginRequest: LoginRequest): Call<LoginResponse>
 
+    @GET("news.json")
+    fun news(): Observable<NewsResponse>
 }

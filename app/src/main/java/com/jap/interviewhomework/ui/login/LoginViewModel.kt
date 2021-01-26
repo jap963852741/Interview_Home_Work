@@ -1,5 +1,6 @@
 package com.jap.interviewhomework.ui.login
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -8,6 +9,15 @@ import com.jap.interviewhomework.data.LoginRepository
 import com.jap.interviewhomework.data.Result
 
 import com.jap.interviewhomework.R
+import com.jap.interviewhomework.data.model.ApiInterface
+import com.jap.interviewhomework.data.model.LoginResponse
+import io.reactivex.rxjava3.core.Observer
+import io.reactivex.rxjava3.disposables.Disposable
+import io.reactivex.rxjava3.schedulers.Schedulers
+import retrofit2.Retrofit
+import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory
+import retrofit2.converter.gson.GsonConverterFactory
+import java.io.IOException
 
 class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel() {
 
@@ -19,13 +29,26 @@ class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel()
 
     fun login(username: String, password: String) {
         // can be launched in a separate asynchronous job
-        val result = loginRepository.login(username, password)
-
-        if (result is Result.Success) {
-            _loginResult.value = LoginResult(success = LoggedInUserView(displayName = result.data.displayName))
-        } else {
-            _loginResult.value = LoginResult(error = R.string.login_failed)
+        val observer: Observer<LoginResponse> = object : Observer<LoginResponse> {
+            override fun onNext(item: LoginResponse) {
+                Log.e("TAG", "next:$item")
+                _loginResult.postValue(LoginResult(success = LoggedInUserView(displayName = item.toString())))
+            }
+            override fun onError(e: Throwable) {
+                println("Error Occured ${e.message}")
+                _loginResult.postValue(LoginResult(error = R.string.login_failed))
+            }
+            override fun onComplete() {
+            }
+            override fun onSubscribe(d: Disposable) {
+            }
         }
+
+        loginRepository.login(username, password)
+            .subscribeOn(Schedulers.newThread())
+            .observeOn(Schedulers.io())
+            .subscribe(observer)
+
     }
 
     fun loginDataChanged(username: String, password: String) {

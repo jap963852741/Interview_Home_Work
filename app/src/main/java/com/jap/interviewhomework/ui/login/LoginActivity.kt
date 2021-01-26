@@ -1,9 +1,11 @@
 package com.jap.interviewhomework.ui.login
 
 import android.app.Activity
+import android.content.Intent
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
+import android.provider.AlarmClock.EXTRA_MESSAGE
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import android.text.Editable
@@ -14,8 +16,10 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.Toast
+import androidx.lifecycle.ViewModelProvider
 
 import com.jap.interviewhomework.R
+import com.jap.interviewhomework.ui.main.MainActivity
 
 class LoginActivity : AppCompatActivity() {
 
@@ -31,7 +35,8 @@ class LoginActivity : AppCompatActivity() {
         val login = findViewById<Button>(R.id.login)
         val loading = findViewById<ProgressBar>(R.id.loading)
 
-        loginViewModel = ViewModelProviders.of(this, LoginViewModelFactory()).get(LoginViewModel::class.java)
+//        loginViewModel = ViewModelProviders.of(this, LoginViewModelFactory()).get(LoginViewModel::class.java)
+        loginViewModel = ViewModelProvider(this, LoginViewModelFactory()).get(LoginViewModel::class.java)
 
         loginViewModel.loginFormState.observe(this@LoginActivity, Observer {
             val loginState = it ?: return@Observer
@@ -56,11 +61,16 @@ class LoginActivity : AppCompatActivity() {
             }
             if (loginResult.success != null) {
                 updateUiWithUser(loginResult.success)
+                val intent = Intent(this, MainActivity::class.java).apply {
+                    putExtra(EXTRA_MESSAGE, loginResult.success.toString())
+                }
+                startActivity(intent)
             }
-            setResult(Activity.RESULT_OK)
+//            setResult(Activity.RESULT_OK)
+
 
             //Complete and destroy login activity once successful
-            finish()
+//            finish()
         })
 
         username.afterTextChanged {
