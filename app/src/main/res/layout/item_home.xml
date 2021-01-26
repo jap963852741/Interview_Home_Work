@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -9,11 +9,60 @@
 
 
     <TextView
-        android:id="@+id/item_information"
+        android:id="@+id/cht_message"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:textColor="#000000"
         android:textSize="24sp"
          />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:id="@+id/eng_message"
+        android:layout_below="@id/cht_message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#000000"
+        android:textSize="24sp"
+        />
+
+    <TextView
+        android:id="@+id/start_time"
+        android:layout_below="@id/eng_message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        />
+    <TextView
+        android:id="@+id/end_time"
+        android:layout_below="@id/start_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        />
+    <TextView
+        android:id="@+id/update_time"
+        android:layout_below="@id/end_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        />
+    <TextView
+        android:id="@+id/content"
+        android:layout_below="@id/update_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        />
+    <TextView
+        android:id="@+id/url"
+        android:layout_below="@id/content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        />
+</RelativeLayout>

@@ -6,18 +6,14 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import android.util.Patterns
 import com.jap.interviewhomework.data.LoginRepository
-import com.jap.interviewhomework.data.Result
 
 import com.jap.interviewhomework.R
-import com.jap.interviewhomework.data.model.ApiInterface
 import com.jap.interviewhomework.data.model.LoginResponse
 import io.reactivex.rxjava3.core.Observer
 import io.reactivex.rxjava3.disposables.Disposable
 import io.reactivex.rxjava3.schedulers.Schedulers
-import retrofit2.Retrofit
 import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory
-import retrofit2.converter.gson.GsonConverterFactory
-import java.io.IOException
+
 
 class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel() {
 
@@ -32,7 +28,7 @@ class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel()
         val observer: Observer<LoginResponse> = object : Observer<LoginResponse> {
             override fun onNext(item: LoginResponse) {
                 Log.e("TAG", "next:$item")
-                _loginResult.postValue(LoginResult(success = LoggedInUserView(displayName = item.toString())))
+                _loginResult.postValue(LoginResult(success = LoggedInUserView(displayItem = item.toString())))
             }
             override fun onError(e: Throwable) {
                 println("Error Occured ${e.message}")

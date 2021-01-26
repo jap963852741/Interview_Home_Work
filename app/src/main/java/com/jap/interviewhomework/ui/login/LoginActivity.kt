@@ -62,7 +62,7 @@ class LoginActivity : AppCompatActivity() {
             if (loginResult.success != null) {
                 updateUiWithUser(loginResult.success)
                 val intent = Intent(this, MainActivity::class.java).apply {
-                    putExtra(EXTRA_MESSAGE, loginResult.success.toString())
+                    putExtra(EXTRA_MESSAGE, it.success.toString())
                 }
                 startActivity(intent)
             }
@@ -108,7 +108,7 @@ class LoginActivity : AppCompatActivity() {
 
     private fun updateUiWithUser(model: LoggedInUserView) {
         val welcome = getString(R.string.welcome)
-        val displayName = model.displayName
+        val displayName = model.displayItem
         // TODO : initiate successful logged in experience
         Toast.makeText(
                 applicationContext,
