@@ -1,6 +1,5 @@
 package com.jap.interviewhomework.util
 
-import android.util.Log
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
@@ -25,6 +24,7 @@ class FragmentSwitchUtil constructor(fragmanager  : FragmentManager){
     companion object {
         val TAB_HOME = "tab_home"
         val TAB_UPDATE = "tab_update"
+
         private var INSTANCE: FragmentSwitchUtil? = null
         fun getInstance(context: FragmentManager): FragmentSwitchUtil {
             if (INSTANCE == null) {
@@ -32,6 +32,7 @@ class FragmentSwitchUtil constructor(fragmanager  : FragmentManager){
             }
             return INSTANCE!!
         }
+
     }
 
     fun init(homeFragment: HomeFragment){
@@ -97,35 +98,6 @@ class FragmentSwitchUtil constructor(fragmanager  : FragmentManager){
             }
         }
         return null
-
-    }
-//    fun GetHomeFragment() : HomeFragment?{
-//        val fragments: List<Fragment> = manager.getFragments()
-//        for (fragment in fragments) {
-//            if(fragment is HomeFragment){
-//                return fragment
-//            }
-//        }
-//        return null
-//    }
-
-    fun replaceCateFragment(
-        animType: Int,
-        frag: Fragment?
-    ) {
-        val transaction: FragmentTransaction = manager.beginTransaction()
-        if (animType == 1) {
-            transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-        }
-        if (animType == 0) {
-            transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE)
-        }
-
-        mStacks!![TAB_HOME]!!.push(frag)
-
-        transaction.replace(R.id.nav_host_fragment, frag!!)
-        Log.i("replaceCateFragment"," fragment :   "+frag.toString())
-        transaction.commit()
     }
 
 }

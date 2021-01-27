@@ -27,11 +27,11 @@ class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel()
         // can be launched in a separate asynchronous job
         val observer: Observer<LoginResponse> = object : Observer<LoginResponse> {
             override fun onNext(item: LoginResponse) {
-                Log.e("TAG", "next:$item")
+//                Log.e("TAG", "next:$item")
                 _loginResult.postValue(LoginResult(success = LoggedInUserView(displayItem = item.toString())))
             }
             override fun onError(e: Throwable) {
-                println("Error Occured ${e.message}")
+//                println("Error Occured ${e.message}")
                 _loginResult.postValue(LoginResult(error = R.string.login_failed))
             }
             override fun onComplete() {
@@ -62,7 +62,8 @@ class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel()
         return if (username.contains('@')) {
             Patterns.EMAIL_ADDRESS.matcher(username).matches()
         } else {
-            username.isNotBlank()
+//            username.isNotBlank()
+              false
         }
     }
 

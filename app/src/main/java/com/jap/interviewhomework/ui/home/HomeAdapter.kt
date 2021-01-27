@@ -9,8 +9,7 @@ import com.jap.interviewhomework.data.model.News
 import com.jap.interviewhomework.databinding.ItemHomeBinding
 
 class HomeAdapter(
-    private val dataList: ArrayList<News>?,
-    private val parentview: ViewGroup
+    private val dataList: ArrayList<News>?
 ) :
 
     RecyclerView.Adapter<VH>() {
@@ -23,16 +22,16 @@ class HomeAdapter(
 
     @SuppressLint("ResourceType")
     override fun onBindViewHolder(holder: VH, position: Int) {
-        val c = dataList!!.get(position)
-        holder.chtMessage.text = c.chtmessage
-        if (c.engmessage != "")
-            holder.engMessage.text =  c.engmessage
-        holder.startTime.text =  c.starttime
-        holder.endTime.text =  c.endtime
-        holder.updateTime.text = c.updatetime
-        holder.content.text = c.content
-        if (c.url != null)
-            holder.url.text =  c.url
+        val news = dataList!!.get(position)
+        holder.chtMessage.text = news.chtmessage
+        if (news.engmessage != "")
+            holder.engMessage.text =  news.engmessage
+        holder.startTime.text =  news.starttime
+        holder.endTime.text =  news.endtime
+        holder.updateTime.text = news.updatetime
+        holder.content.text = news.content
+        if (news.url != null)
+            holder.url.text =  news.url
 
     }
 

@@ -1,8 +1,5 @@
 package com.jap.interviewhomework.data.model
 
-import com.google.gson.annotations.SerializedName
-
-
 data class LoginResponse (
 //    @SerializedName("objectID")
     val objectId: String,

@@ -1,7 +1,5 @@
 package com.jap.interviewhomework.data.model
 
-
-
 data class NewsResponse (
     val updateTime: String,
     val News: List<News>

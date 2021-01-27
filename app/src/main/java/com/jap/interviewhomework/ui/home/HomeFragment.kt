@@ -19,15 +19,10 @@ import com.jap.interviewhomework.util.SpacesItemDecoration
 
 class HomeFragment : Fragment(){
 
-    private lateinit var homeviewbinding: FragmentHomeBinding
-    private lateinit var homeAdapter: HomeAdapter
-
-    companion object {
-        lateinit var homeViewModel: HomeViewModel
-    }
+    private lateinit var homeViewModel: HomeViewModel
 
     override fun onCreateView(inflater: LayoutInflater,container: ViewGroup?,savedInstanceState: Bundle?): View? {
-        homeviewbinding = FragmentHomeBinding.inflate(inflater, container, false);
+        val homeviewbinding = FragmentHomeBinding.inflate(inflater, container, false);
         val toolbar: Toolbar = homeviewbinding.toolBarHome
         val recyclerView: RecyclerView = homeviewbinding.reView
 
@@ -42,8 +37,7 @@ class HomeFragment : Fragment(){
                 showNewsFailed(newsResult.error)
             }
             if (newsResult.success != null) {
-                homeAdapter = HomeAdapter(it.success, container!!)
-                recyclerView.setAdapter(homeAdapter)
+                recyclerView.setAdapter(HomeAdapter(it.success))
                 recyclerView.addItemDecoration(
                     DividerItemDecoration(context,
                         DividerItemDecoration.VERTICAL)
@@ -60,9 +54,7 @@ class HomeFragment : Fragment(){
         })
 
         homeviewbinding.toolbarButton.setOnClickListener{
-            val fragmentManager = parentFragmentManager
-            val fragmentutil = FragmentSwitchUtil.getInstance(fragmentManager)
-            fragmentutil.selectedTab(TAB_UPDATE)
+            FragmentSwitchUtil.getInstance(parentFragmentManager).selectedTab(TAB_UPDATE)
         }
 
         init()
