@@ -12,5 +12,8 @@
     <string name="login_failed">"Login failed"</string>
     <string name="news_failed">"News API failed"</string>
     <string name="time_zone">Time Zone</string>
+    <string name="user_time_zone">User Time Zone : </string>
+    <string name="change_time_zone">submit</string>
+    <string name="user_email">User Email : </string>
 
 </resources>

@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     tools:context=".ui.update.UpdateFragment"
     android:id="@+id/updatefragment"
     android:orientation="vertical"
@@ -29,43 +29,81 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:orientation="horizontal"
-        android:layout_marginTop="100dp">
-
+        >
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="right"
+            android:text="@string/user_email"
+            android:layout_gravity="center"
+            android:textColor="#000000"
+            android:textSize="18sp" />
         <TextView
             android:id="@+id/user_email"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="match_parent"
-            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="@string/app_name"
+            android:layout_weight="1"
+            android:gravity="left"
             android:textColor="#000000"
-            android:textSize="24sp"
-            tools:ignore="NestedWeights" />
+            android:textSize="24sp" />
 
     </LinearLayout>
-
     <LinearLayout
-        android:id="@+id/user_timezone"
         android:layout_width="match_parent"
         android:layout_weight="1"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:orientation="horizontal"
-        android:layout_marginTop="100dp">
-
-
-        <androidx.appcompat.widget.AppCompatSpinner
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
+        >
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:textSize="20sp"
-            android:padding="0dp"
+            android:gravity="right"
+            android:text="@string/user_time_zone"
+            android:layout_gravity="top"
+            android:textColor="#000000"
+            android:textSize="18sp" />
+        <TextView
+            android:id="@+id/user_timezone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="left"
+            android:layout_gravity="top"
+            android:textColor="#000000"
+            android:textSize="24sp" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_weight="5"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="horizontal"
+        >
+
+
+        <org.angmarch.views.NiceSpinner
             android:id="@+id/timezone_spinner"
-            android:paddingStart="30dp"
-            android:paddingEnd="30dp"
+            android:layout_weight="3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top"
+            android:gravity="center"
+            android:paddingStart="100dp"
+            android:paddingEnd="100dp"
+            android:textSize="20sp"
+
+            />
+        <Button
+            android:id="@+id/change_timezone_button"
+            android:layout_weight="3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/change_time_zone"
             />
     </LinearLayout>
 

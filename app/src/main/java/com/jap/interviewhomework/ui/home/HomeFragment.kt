@@ -1,8 +1,6 @@
 package com.jap.interviewhomework.ui.home
 
 import android.os.Bundle
-import android.provider.AlarmClock.EXTRA_MESSAGE
-import android.util.Log
 import android.view.*
 import android.widget.Toast
 import androidx.annotation.StringRes
