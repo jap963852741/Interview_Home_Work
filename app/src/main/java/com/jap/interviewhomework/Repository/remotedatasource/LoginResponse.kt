@@ -16,6 +16,7 @@ data class LoginResponse (
 )
 
 data class ACL (
+    //TODO 有可能是變數
     val WkuKfCAdGq: WkuKfCAdGq
 )
 

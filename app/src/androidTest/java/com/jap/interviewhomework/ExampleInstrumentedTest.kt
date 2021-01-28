@@ -1,10 +1,15 @@
 package com.jap.interviewhomework
 
+import android.provider.SyncStateContract.Helpers.update
 import android.util.Log
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import com.jap.interviewhomework.Repository.UpdateDataSource
+import com.jap.interviewhomework.Repository.UpdateRepository
 import com.jap.interviewhomework.Repository.remotedatasource.ApiInterface
 import com.jap.interviewhomework.Repository.remotedatasource.LoginResponse
 import com.jap.interviewhomework.Repository.remotedatasource.NewsResponse
+import com.jap.interviewhomework.Repository.remotedatasource.UpdateResponse
+import com.jap.interviewhomework.ui.home.NewsResult
 import io.reactivex.rxjava3.core.Observer
 import io.reactivex.rxjava3.disposables.Disposable
 import io.reactivex.rxjava3.schedulers.Schedulers
@@ -68,8 +73,6 @@ class ExampleInstrumentedTest {
     @Test
     fun news_api_unit_test() {
         // Context of the app under test.
-//        val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-//        assertEquals("com.jap.interviewhomework", appContext.packageName)
 
         val baseUrl = "https://tcgbusfs.blob.core.windows.net/dotapp/"
         val retrofit = Retrofit.Builder()
@@ -108,4 +111,37 @@ class ExampleInstrumentedTest {
 
     }
 
+
+    @Test
+    fun update_api_unit_test() {
+        // Context of the app under test.
+
+        val observer: Observer<UpdateResponse> = object : Observer<UpdateResponse> {
+            override fun onNext(item: UpdateResponse) {
+                Log.e("TAG", "next:$item")
+            }
+            override fun onError(e: Throwable) {
+                println("Error Occured ${e.message}")
+            }
+            override fun onComplete() {
+            }
+            override fun onSubscribe(d: Disposable) {
+            }
+        }
+
+        UpdateRepository(UpdateDataSource()).update("r:ba24c4950b397799b78ba2f078e0338a","WkuKfCAdGq")
+            .subscribeOn(Schedulers.newThread())
+            .observeOn(Schedulers.io())
+            .subscribe(observer)
+
+
+        //等callback
+        try {
+            Thread.sleep(4000)
+        } catch (e: InterruptedException) {
+            e.printStackTrace()
+        }
+        Log.e("finish","finish")
+
+    }
 }

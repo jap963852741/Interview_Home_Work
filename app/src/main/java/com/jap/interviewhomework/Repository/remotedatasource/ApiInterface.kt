@@ -1,9 +1,7 @@
 package com.jap.interviewhomework.Repository.remotedatasource
 
 import io.reactivex.rxjava3.core.Observable
-import retrofit2.http.GET
-import retrofit2.http.Headers
-import retrofit2.http.Query
+import retrofit2.http.*
 
 interface ApiInterface {
 
@@ -14,4 +12,9 @@ interface ApiInterface {
 
     @GET("news.json")
     fun news(): Observable<NewsResponse>
+
+    @Headers("X-Parse-Application-Id:vqYuKPOkLQLYHhk4QTGsGKFwATT4mBIGREI2m8eD")
+    @PUT("{objectId}")
+    fun update(@Header("X-Parse-Session-Token") sessionToken: String,
+               @Path("objectId") objectId: String): Observable<UpdateResponse>
 }
