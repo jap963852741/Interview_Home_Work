@@ -1,11 +1,8 @@
 package com.jap.interviewhomework.ui.login
 
-import android.app.Activity
 import android.content.Intent
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import android.provider.AlarmClock.EXTRA_MESSAGE
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import android.text.Editable
@@ -24,6 +21,10 @@ import com.jap.interviewhomework.ui.main.MainActivity
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var loginViewModel: LoginViewModel
+
+    companion object{
+        const val LOGIN_DATA = "LoginData"
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,7 +60,7 @@ class LoginActivity : AppCompatActivity() {
             if (loginResult.success != null) {
                 updateUiWithUser(loginResult.success)
                 val intent = Intent(this, MainActivity::class.java).apply {
-                    putExtra(EXTRA_MESSAGE, it.success.toString())
+                    putExtra(LOGIN_DATA, loginResult.success)
                 }
                 startActivity(intent)
             }
@@ -103,13 +104,11 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    private fun updateUiWithUser(model: LoggedInUserView) {
-        val welcome = getString(R.string.welcome)
-        val displayName = model.displayItem
-        // TODO : initiate successful logged in experience
+    private fun updateUiWithUser(model: LogDataResult) {
+        val login_success = getString(R.string.login_success)
         Toast.makeText(
                 applicationContext,
-                "$welcome $displayName",
+                "$login_success ",
                 Toast.LENGTH_LONG
         ).show()
     }

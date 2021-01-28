@@ -25,11 +25,9 @@ class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel()
         // can be launched in a separate asynchronous job
         val observer: Observer<LoginResponse> = object : Observer<LoginResponse> {
             override fun onNext(item: LoginResponse) {
-//                Log.e("TAG", "next:$item")
-                _loginResult.postValue(LoginResult(success = LoggedInUserView(displayItem = item.toString())))
+                _loginResult.postValue(LoginResult(success = LogDataResult(loginResponse = item)))
             }
             override fun onError(e: Throwable) {
-//                println("Error Occured ${e.message}")
                 _loginResult.postValue(LoginResult(error = R.string.login_failed))
             }
             override fun onComplete() {

@@ -10,6 +10,7 @@ import com.jap.interviewhomework.Repository.remotedatasource.LoginResponse
 import com.jap.interviewhomework.Repository.remotedatasource.NewsResponse
 import com.jap.interviewhomework.Repository.remotedatasource.UpdateResponse
 import com.jap.interviewhomework.ui.home.NewsResult
+import com.jap.interviewhomework.ui.update.Timezone
 import io.reactivex.rxjava3.core.Observer
 import io.reactivex.rxjava3.disposables.Disposable
 import io.reactivex.rxjava3.schedulers.Schedulers
@@ -128,8 +129,8 @@ class ExampleInstrumentedTest {
             override fun onSubscribe(d: Disposable) {
             }
         }
-
-        UpdateRepository(UpdateDataSource()).update("r:ba24c4950b397799b78ba2f078e0338a","WkuKfCAdGq")
+        var timezone = Timezone(timezone = 5)
+        UpdateRepository(UpdateDataSource()).update("r:08e6ce5ae1805c556440c06908626603","WkuKfCAdGq",timezone)
             .subscribeOn(Schedulers.newThread())
             .observeOn(Schedulers.io())
             .subscribe(observer)
