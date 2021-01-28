@@ -1,19 +1,13 @@
 package com.jap.interviewhomework.ui.home
 
-import android.app.Application
 import android.util.Log
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.jap.interviewhomework.R
-import com.jap.interviewhomework.data.LoginRepository
-import com.jap.interviewhomework.data.NewsRepository
-import com.jap.interviewhomework.data.model.LoginResponse
-import com.jap.interviewhomework.data.model.News
-import com.jap.interviewhomework.data.model.NewsResponse
-import com.jap.interviewhomework.ui.login.LoggedInUserView
-import com.jap.interviewhomework.ui.login.LoginResult
+import com.jap.interviewhomework.Repository.NewsRepository
+import com.jap.interviewhomework.Repository.remotedatasource.News
+import com.jap.interviewhomework.Repository.remotedatasource.NewsResponse
 import io.reactivex.rxjava3.core.Observer
 import io.reactivex.rxjava3.disposables.Disposable
 import io.reactivex.rxjava3.schedulers.Schedulers

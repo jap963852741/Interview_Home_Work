@@ -1,8 +1,7 @@
-package com.jap.interviewhomework.data
+package com.jap.interviewhomework.Repository
 
-import com.jap.interviewhomework.data.model.ApiInterface
-import com.jap.interviewhomework.data.model.LoginResponse
-import com.jap.interviewhomework.data.model.NewsResponse
+import com.jap.interviewhomework.Repository.remotedatasource.ApiInterface
+import com.jap.interviewhomework.Repository.remotedatasource.NewsResponse
 import io.reactivex.rxjava3.core.Observable
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory

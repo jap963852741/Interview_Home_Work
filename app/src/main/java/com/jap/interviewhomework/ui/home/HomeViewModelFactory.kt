@@ -2,8 +2,8 @@ package com.jap.interviewhomework.ui.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.jap.interviewhomework.data.NewsDataSource
-import com.jap.interviewhomework.data.NewsRepository
+import com.jap.interviewhomework.Repository.NewsDataSource
+import com.jap.interviewhomework.Repository.NewsRepository
 
 /**
  * ViewModel provider factory to instantiate LoginViewModel.

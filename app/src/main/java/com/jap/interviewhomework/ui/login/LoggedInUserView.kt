@@ -5,5 +5,5 @@ package com.jap.interviewhomework.ui.login
  */
 data class LoggedInUserView(
         val displayItem: String
-        //... other data fields that may be accessible to the UI
+        //... other Repository fields that may be accessible to the UI
 )

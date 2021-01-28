@@ -1,6 +1,6 @@
 package com.jap.interviewhomework.ui.home
 
-import com.jap.interviewhomework.data.model.News
+import com.jap.interviewhomework.Repository.remotedatasource.News
 
 /**
  * Authentication result : success (user details) or error message.

@@ -1,4 +1,4 @@
-package com.jap.interviewhomework.data.model
+package com.jap.interviewhomework.Repository.remotedatasource
 
 data class LoginResponse (
 //    @SerializedName("objectID")

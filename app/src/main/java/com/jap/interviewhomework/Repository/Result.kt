@@ -1,4 +1,4 @@
-package com.jap.interviewhomework.data
+package com.jap.interviewhomework.Repository
 
 /**
  * A generic class that holds a value with its loading status.
@@ -11,7 +11,7 @@ sealed class Result<out T : Any> {
 
     override fun toString(): String {
         return when (this) {
-            is Success<*> -> "Success[data=$data]"
+            is Success<*> -> "Success[Repository=$data]"
             is Error -> "Error[exception=$exception]"
         }
     }

@@ -1,10 +1,10 @@
-package com.jap.interviewhomework.data
+package com.jap.interviewhomework.Repository
 
-import com.jap.interviewhomework.data.model.LoginResponse
+import com.jap.interviewhomework.Repository.remotedatasource.LoginResponse
 import io.reactivex.rxjava3.core.Observable
 
 /**
- * Class that requests authentication and user information from the remote data source and
+ * Class that requests authentication and user information from the remote Repository source and
  * maintains an in-memory cache of login status and user credentials information.
  */
 

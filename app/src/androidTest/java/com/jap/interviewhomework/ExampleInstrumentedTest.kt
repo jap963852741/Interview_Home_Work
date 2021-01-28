@@ -2,9 +2,9 @@ package com.jap.interviewhomework
 
 import android.util.Log
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import com.jap.interviewhomework.data.model.ApiInterface
-import com.jap.interviewhomework.data.model.LoginResponse
-import com.jap.interviewhomework.data.model.NewsResponse
+import com.jap.interviewhomework.Repository.remotedatasource.ApiInterface
+import com.jap.interviewhomework.Repository.remotedatasource.LoginResponse
+import com.jap.interviewhomework.Repository.remotedatasource.NewsResponse
 import io.reactivex.rxjava3.core.Observer
 import io.reactivex.rxjava3.disposables.Disposable
 import io.reactivex.rxjava3.schedulers.Schedulers

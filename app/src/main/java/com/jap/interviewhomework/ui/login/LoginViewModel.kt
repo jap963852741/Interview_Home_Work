@@ -1,18 +1,16 @@
 package com.jap.interviewhomework.ui.login
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import android.util.Patterns
-import com.jap.interviewhomework.data.LoginRepository
+import com.jap.interviewhomework.Repository.LoginRepository
 
 import com.jap.interviewhomework.R
-import com.jap.interviewhomework.data.model.LoginResponse
+import com.jap.interviewhomework.Repository.remotedatasource.LoginResponse
 import io.reactivex.rxjava3.core.Observer
 import io.reactivex.rxjava3.disposables.Disposable
 import io.reactivex.rxjava3.schedulers.Schedulers
-import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory
 
 
 class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel() {

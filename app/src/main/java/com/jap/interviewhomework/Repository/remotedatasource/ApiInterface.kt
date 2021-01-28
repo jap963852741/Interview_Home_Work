@@ -1,4 +1,4 @@
-package com.jap.interviewhomework.data.model
+package com.jap.interviewhomework.Repository.remotedatasource
 
 import io.reactivex.rxjava3.core.Observable
 import retrofit2.http.GET
