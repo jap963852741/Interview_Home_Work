@@ -17,16 +17,16 @@ class HomeViewModel(private val newsRepository: NewsRepository): ViewModel(){
 
     fun news() {
         // can be launched in a separate asynchronous job
-        var temp_array = arrayListOf<News>()
+        var news_array = arrayListOf<News>()
         val observer: Observer<NewsResponse> = object: Observer<NewsResponse> {
             override fun onNext(item: NewsResponse) {
                 for (news in item.News){
-                    temp_array.add(news)
+                    news_array.add(news)
                 }
-                _News.postValue(NewsResult(success = temp_array))
+                _News.postValue(NewsResult(success = news_array))
             }
             override fun onError(e: Throwable) {
-                println("Error Occured ${e.message}")
+//                println("Error Occured ${e.message}")
                 _News.postValue(NewsResult(error = R.string.news_failed))
             }
             override fun onComplete() {

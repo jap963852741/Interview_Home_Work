@@ -49,7 +49,7 @@ class UpdateFragment : Fragment(){
         toolbar.setNavigationOnClickListener {
             FragmentSwitchUtil(parentFragmentManager).getInstance().selectedTab(TAB_HOME)
         }
-        val timezonelist = arrayListOf<String?>("TimeZone","1","2","3","4")
+        val timezonelist = arrayListOf<String?>("TimeZone","1","2","3","4","5","6")
         updateviewbinding.timezoneSpinner.setAdapter(SpinnerAdatper<String?>(container!!.context,
             android.R.layout.simple_spinner_dropdown_item,
             timezonelist))
