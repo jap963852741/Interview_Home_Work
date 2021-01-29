@@ -47,7 +47,7 @@ class UpdateFragment : Fragment(){
         setHasOptionsMenu(true)
         toolbar.setNavigationIcon(R.drawable.ic_back_black)
         toolbar.setNavigationOnClickListener {
-            FragmentSwitchUtil.getInstance(parentFragmentManager).selectedTab(TAB_HOME)
+            FragmentSwitchUtil(parentFragmentManager).getInstance().selectedTab(TAB_HOME)
         }
         val timezonelist = arrayListOf<String?>("TimeZone","1","2","3","4")
         updateviewbinding.timezoneSpinner.setAdapter(SpinnerAdatper<String?>(container!!.context,

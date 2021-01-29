@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity() {
         viewbinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(viewbinding.root)
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR //Statusbar 轉為深色
-        FragmentSwitchUtil.getInstance(supportFragmentManager).init(HomeFragment())
+        FragmentSwitchUtil(supportFragmentManager).getInstance().init(HomeFragment())
     }
 
 }

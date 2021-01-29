@@ -4,22 +4,27 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.text.method.HideReturnsTransformationMethod
+import android.text.method.PasswordTransformationMethod
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.Button
 import android.widget.EditText
-import android.widget.ProgressBar
+import android.util.Log
 import android.widget.Toast
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.jap.interviewhomework.R
+import com.jap.interviewhomework.databinding.ActivityLoginBinding
+import com.jap.interviewhomework.databinding.ActivityMainBinding
 import com.jap.interviewhomework.ui.main.MainActivity
 
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var loginViewModel: LoginViewModel
+    private lateinit var viewbinding: ActivityLoginBinding
 
     companion object{
         const val LOGIN_DATA = "LoginData"
@@ -27,20 +32,36 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        viewbinding = ActivityLoginBinding.inflate(layoutInflater)
+        setContentView(viewbinding.root)
 
-        setContentView(R.layout.activity_login)
+        val username = viewbinding.username
+        val password = viewbinding.password
+        var isOpenEye = false
 
-        val username = findViewById<EditText>(R.id.username)
-        val password = findViewById<EditText>(R.id.password)
-        val login = findViewById<Button>(R.id.login)
-        val loading = findViewById<ProgressBar>(R.id.loading)
+        viewbinding.ivEye.setOnClickListener(
+            object : View.OnClickListener{
+                override fun onClick(v: View?) {
+                    if(!isOpenEye) {
+                        viewbinding.ivEye.setSelected(true);
+                        isOpenEye = true;
+                        password.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                    }else{
+                        viewbinding.ivEye.setSelected(false);
+                        isOpenEye = false;
+                        password.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                    }
+                }
+
+            }
+        )
 
         loginViewModel = ViewModelProvider(this, LoginViewModelFactory()).get(LoginViewModel::class.java)
 
         loginViewModel.loginFormState.observe(this@LoginActivity, Observer {
             val loginState = it ?: return@Observer
             // disable login button unless both username / password is valid
-            login.isEnabled = loginState.isDataValid
+            viewbinding.login.isEnabled = loginState.isDataValid
             if (loginState.usernameError != null) {
                 username.error = getString(loginState.usernameError)
             }
@@ -52,15 +73,16 @@ class LoginActivity : AppCompatActivity() {
         loginViewModel.loginResult.observe(this@LoginActivity, Observer {
             val loginResult = it ?: return@Observer
 
-            loading.visibility = View.GONE
+            viewbinding.loading.visibility = View.GONE
             if (loginResult.error != null) {
                 showLoginFailed(loginResult.error)
             }
             if (loginResult.success != null) {
-                updateUiWithUser(loginResult.success)
+                updateUiWithUser()
                 val intent = Intent(this, MainActivity::class.java).apply {
                     putExtra(LOGIN_DATA, loginResult.success)
-                    setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK) //next activity never back 
+                    Log.e("LOGIN_DATA",loginResult.success.toString())
+                    setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK) //next activity never back
                 }
                 startActivity(intent)
             }
@@ -97,14 +119,14 @@ class LoginActivity : AppCompatActivity() {
                 false
             }
 
-            login.setOnClickListener {
-                loading.visibility = View.VISIBLE
+            viewbinding.login.setOnClickListener {
+                viewbinding.loading.visibility = View.VISIBLE
                 loginViewModel.login(username.text.toString(), password.text.toString())
             }
         }
     }
 
-    private fun updateUiWithUser(model: LoginDataResult) {
+    private fun updateUiWithUser() {
         val login_success = getString(R.string.login_success)
         Toast.makeText(
                 applicationContext,

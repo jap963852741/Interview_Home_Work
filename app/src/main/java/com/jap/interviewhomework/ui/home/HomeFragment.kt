@@ -54,7 +54,7 @@ class HomeFragment : Fragment(){
         })
 
         homeviewbinding.toolbarButton.setOnClickListener{
-            FragmentSwitchUtil.getInstance(parentFragmentManager).selectedTab(TAB_UPDATE)
+            FragmentSwitchUtil(parentFragmentManager).getInstance().selectedTab(TAB_UPDATE)
         }
 
         init()

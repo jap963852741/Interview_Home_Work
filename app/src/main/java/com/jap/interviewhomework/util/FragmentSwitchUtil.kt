@@ -1,5 +1,6 @@
 package com.jap.interviewhomework.util
 
+import android.util.Log
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
@@ -24,15 +25,14 @@ class FragmentSwitchUtil constructor(fragmanager  : FragmentManager){
     companion object {
         val TAB_HOME = "tab_home"
         val TAB_UPDATE = "tab_update"
-
         private var INSTANCE: FragmentSwitchUtil? = null
-        fun getInstance(context: FragmentManager): FragmentSwitchUtil {
-            if (INSTANCE == null) {
-                INSTANCE = FragmentSwitchUtil(context)
-            }
-            return INSTANCE!!
-        }
+    }
 
+    fun getInstance(): FragmentSwitchUtil {
+        if (INSTANCE == null) {
+            INSTANCE = FragmentSwitchUtil(manager)
+        }
+        return INSTANCE!!
     }
 
     fun init(homeFragment: HomeFragment){
@@ -46,11 +46,12 @@ class FragmentSwitchUtil constructor(fragmanager  : FragmentManager){
     }
 
     /**
-  *    First time this tab is selected. So add first fragment of that tab.
-  *    Dont need animation, so that argument is false.
-  *    We are adding a new fragment which is not present in stack. So add to stack is true.
-  */
+      *    First time this tab is selected. So add first fragment of that tab.
+      *    Dont need animation, so that argument is false.
+      *    We are adding a new fragment which is not present in stack. So add to stack is true.
+      */
     fun selectedTab(tabId: String) {
+        Log.e("mStacks",mStacks.toString())
         mCurrentTab = tabId
         if (mStacks!![tabId]!!.size == 0) {
             if (tabId == TAB_UPDATE) {
