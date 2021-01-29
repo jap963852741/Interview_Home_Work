@@ -1,28 +1,59 @@
 package com.jap.interviewhomework.ui.update
 
 
-import android.provider.Contacts.SettingsColumns.KEY
 import android.util.Log
-import androidx.constraintlayout.solver.widgets.analyzer.Dependency
 import androidx.hilt.Assisted
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.*
+import com.jap.interviewhomework.R
+import com.jap.interviewhomework.Repository.UpdateDataSource
 import com.jap.interviewhomework.Repository.UpdateRepository
-import com.jap.interviewhomework.ui.login.LogDataResult
+import com.jap.interviewhomework.Repository.remotedatasource.UpdateResponse
+import com.jap.interviewhomework.ui.login.LoginDataResult
 import com.jap.interviewhomework.ui.login.LoginActivity.Companion.LOGIN_DATA
+import com.jap.interviewhomework.ui.login.LoginResult
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.core.Observer
+import io.reactivex.rxjava3.disposables.Disposable
+import io.reactivex.rxjava3.schedulers.Schedulers
 
 class UpdateViewModel @ViewModelInject constructor(
     private val updateRepository: UpdateRepository,
     @Assisted private val savedStateHandle: SavedStateHandle
 ) : ViewModel(), LifecycleObserver {
 
-    private val _logindata = MutableLiveData<LogDataResult>()
-    val logindata: LiveData<LogDataResult> = _logindata
+    private val _logindata = MutableLiveData<LoginDataResult>()
+    val logindata: LiveData<LoginDataResult> = _logindata
+
+    private val _updateResult = MutableLiveData<UpdateResult>()
+    val updateResult: LiveData<UpdateResult> = _updateResult
 
 
+    fun LoginData_textview(){
+        _logindata.postValue(savedStateHandle.get<LoginDataResult>(LOGIN_DATA))
+    }
 
-    fun Login_textview(){
-        _logindata.postValue(savedStateHandle.get<LogDataResult>(LOGIN_DATA))
+    fun updata(sessionToken :String, objectId :String, timezone : Timezone) {
+        val observer: Observer<UpdateResponse> = object : Observer<UpdateResponse> {
+            override fun onNext(item: UpdateResponse) {
+                _updateResult.value = UpdateResult(success = UpdateDataResult(updateResponse = item))
+            }
+            override fun onError(e: Throwable) {
+                _updateResult.value = UpdateResult(error = R.string.update_failed)
+            }
+            override fun onComplete() {
+            }
+            override fun onSubscribe(d: Disposable) {
+            }
+        }
+
+        UpdateRepository(UpdateDataSource()).update(sessionToken,objectId,timezone)
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(observer)
+//            .subscribeOn(Schedulers.newThread())
+//            .observeOn(Schedulers.io())
+//            .subscribe(observer)
+
     }
 
 }

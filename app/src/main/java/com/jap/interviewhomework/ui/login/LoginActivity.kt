@@ -104,7 +104,7 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    private fun updateUiWithUser(model: LogDataResult) {
+    private fun updateUiWithUser(model: LoginDataResult) {
         val login_success = getString(R.string.login_success)
         Toast.makeText(
                 applicationContext,

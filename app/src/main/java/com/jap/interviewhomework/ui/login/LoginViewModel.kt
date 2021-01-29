@@ -8,9 +8,9 @@ import com.jap.interviewhomework.Repository.LoginRepository
 
 import com.jap.interviewhomework.R
 import com.jap.interviewhomework.Repository.remotedatasource.LoginResponse
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observer
 import io.reactivex.rxjava3.disposables.Disposable
-import io.reactivex.rxjava3.schedulers.Schedulers
 
 
 class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel() {
@@ -25,10 +25,10 @@ class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel()
         // can be launched in a separate asynchronous job
         val observer: Observer<LoginResponse> = object : Observer<LoginResponse> {
             override fun onNext(item: LoginResponse) {
-                _loginResult.postValue(LoginResult(success = LogDataResult(loginResponse = item)))
+                _loginResult.value = LoginResult(success = LoginDataResult(loginResponse = item))
             }
             override fun onError(e: Throwable) {
-                _loginResult.postValue(LoginResult(error = R.string.login_failed))
+                _loginResult.value =  LoginResult(error = R.string.login_failed)
             }
             override fun onComplete() {
             }
@@ -37,10 +37,8 @@ class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel()
         }
 
         loginRepository.login(username, password)
-            .subscribeOn(Schedulers.newThread())
-            .observeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
             .subscribe(observer)
-
     }
 
     fun loginDataChanged(username: String, password: String) {

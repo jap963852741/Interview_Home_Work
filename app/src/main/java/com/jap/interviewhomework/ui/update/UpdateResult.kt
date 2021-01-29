@@ -1,11 +1,11 @@
-package com.jap.interviewhomework.ui.login
+package com.jap.interviewhomework.ui.update
 
 import java.io.Serializable
 
 /**
  * Authentication result : success (user details) or error message.
  */
-data class LoginResult (
-        val success: LoginDataResult? = null,
+data class UpdateResult (
+        val success: UpdateDataResult? = null,
         val error: Int? = null
 ): Serializable
