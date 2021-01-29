@@ -1,7 +1,7 @@
-package com.jap.interviewhomework.Repository
+package com.jap.interviewhomework.Repository.network
 
-import com.jap.interviewhomework.Repository.remotedatasource.ApiInterface
-import com.jap.interviewhomework.Repository.remotedatasource.LoginResponse
+import com.jap.interviewhomework.Repository.network.api.ApiInterface
+import com.jap.interviewhomework.Repository.bean.LoginResponse
 import io.reactivex.rxjava3.core.Observable
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory

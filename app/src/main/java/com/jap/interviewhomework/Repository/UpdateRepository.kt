@@ -1,6 +1,7 @@
 package com.jap.interviewhomework.Repository
 
-import com.jap.interviewhomework.Repository.remotedatasource.UpdateResponse
+import com.jap.interviewhomework.Repository.bean.UpdateResponse
+import com.jap.interviewhomework.Repository.network.UpdateDataSource
 import com.jap.interviewhomework.ui.update.Timezone
 import io.reactivex.rxjava3.core.Observable
 

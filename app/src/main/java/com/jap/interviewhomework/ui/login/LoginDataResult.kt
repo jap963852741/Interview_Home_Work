@@ -1,6 +1,6 @@
 package com.jap.interviewhomework.ui.login
 
-import com.jap.interviewhomework.Repository.remotedatasource.LoginResponse
+import com.jap.interviewhomework.Repository.bean.LoginResponse
 import java.io.Serializable
 
 /**

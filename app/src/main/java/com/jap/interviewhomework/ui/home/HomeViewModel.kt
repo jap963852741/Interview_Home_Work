@@ -6,8 +6,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.jap.interviewhomework.R
 import com.jap.interviewhomework.Repository.NewsRepository
-import com.jap.interviewhomework.Repository.remotedatasource.News
-import com.jap.interviewhomework.Repository.remotedatasource.NewsResponse
+import com.jap.interviewhomework.Repository.bean.News
+import com.jap.interviewhomework.Repository.bean.NewsResponse
 import io.reactivex.rxjava3.core.Observer
 import io.reactivex.rxjava3.disposables.Disposable
 import io.reactivex.rxjava3.schedulers.Schedulers

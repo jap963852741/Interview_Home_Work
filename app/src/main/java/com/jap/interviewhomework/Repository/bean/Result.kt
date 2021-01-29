@@ -1,4 +1,4 @@
-package com.jap.interviewhomework.Repository
+package com.jap.interviewhomework.Repository.bean
 
 /**
  * A generic class that holds a value with its loading status.

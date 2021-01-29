@@ -1,21 +1,18 @@
 package com.jap.interviewhomework.ui.update
 
 
-import android.util.Log
 import androidx.hilt.Assisted
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.*
 import com.jap.interviewhomework.R
-import com.jap.interviewhomework.Repository.UpdateDataSource
+import com.jap.interviewhomework.Repository.network.UpdateDataSource
 import com.jap.interviewhomework.Repository.UpdateRepository
-import com.jap.interviewhomework.Repository.remotedatasource.UpdateResponse
+import com.jap.interviewhomework.Repository.bean.UpdateResponse
 import com.jap.interviewhomework.ui.login.LoginDataResult
 import com.jap.interviewhomework.ui.login.LoginActivity.Companion.LOGIN_DATA
-import com.jap.interviewhomework.ui.login.LoginResult
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observer
 import io.reactivex.rxjava3.disposables.Disposable
-import io.reactivex.rxjava3.schedulers.Schedulers
 
 class UpdateViewModel @ViewModelInject constructor(
     private val updateRepository: UpdateRepository,

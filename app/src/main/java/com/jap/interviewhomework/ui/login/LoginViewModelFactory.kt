@@ -2,7 +2,7 @@ package com.jap.interviewhomework.ui.login
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.jap.interviewhomework.Repository.LoginDataSource
+import com.jap.interviewhomework.Repository.network.LoginDataSource
 import com.jap.interviewhomework.Repository.LoginRepository
 
 /**

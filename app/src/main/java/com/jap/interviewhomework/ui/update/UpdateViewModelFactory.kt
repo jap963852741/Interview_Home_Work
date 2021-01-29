@@ -1,13 +1,11 @@
 package com.jap.interviewhomework.ui.update
 
 import android.os.Bundle
-import androidx.constraintlayout.solver.widgets.analyzer.Dependency
 import androidx.lifecycle.AbstractSavedStateViewModelFactory
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.savedstate.SavedStateRegistryOwner
-import com.jap.interviewhomework.Repository.UpdateDataSource
+import com.jap.interviewhomework.Repository.network.UpdateDataSource
 import com.jap.interviewhomework.Repository.UpdateRepository
 
 /**

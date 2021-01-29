@@ -1,10 +1,7 @@
 package com.jap.interviewhomework.ui.login
 
 import android.content.Intent
-import androidx.lifecycle.Observer
 import android.os.Bundle
-import androidx.annotation.StringRes
-import androidx.appcompat.app.AppCompatActivity
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
@@ -13,8 +10,10 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.Toast
+import androidx.annotation.StringRes
+import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-
 import com.jap.interviewhomework.R
 import com.jap.interviewhomework.ui.main.MainActivity
 
@@ -61,6 +60,7 @@ class LoginActivity : AppCompatActivity() {
                 updateUiWithUser(loginResult.success)
                 val intent = Intent(this, MainActivity::class.java).apply {
                     putExtra(LOGIN_DATA, loginResult.success)
+                    setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK) //next activity never back 
                 }
                 startActivity(intent)
             }

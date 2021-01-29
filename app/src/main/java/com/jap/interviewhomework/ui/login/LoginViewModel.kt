@@ -7,7 +7,7 @@ import android.util.Patterns
 import com.jap.interviewhomework.Repository.LoginRepository
 
 import com.jap.interviewhomework.R
-import com.jap.interviewhomework.Repository.remotedatasource.LoginResponse
+import com.jap.interviewhomework.Repository.bean.LoginResponse
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observer
 import io.reactivex.rxjava3.disposables.Disposable

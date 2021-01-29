@@ -2,7 +2,7 @@ package com.jap.interviewhomework.ui.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.jap.interviewhomework.Repository.NewsDataSource
+import com.jap.interviewhomework.Repository.network.NewsDataSource
 import com.jap.interviewhomework.Repository.NewsRepository
 
 /**

@@ -36,9 +36,13 @@ class FragmentSwitchUtil constructor(fragmanager  : FragmentManager){
     }
 
     fun init(homeFragment: HomeFragment){
-        mStacks!![TAB_HOME]!!.push(homeFragment)
-        val transaction: FragmentTransaction = manager.beginTransaction()
-        transaction.add(R.id.nav_host_fragment, homeFragment).commit()
+        if(mStacks!![TAB_HOME]!!.size == 0) {
+            mStacks!![TAB_HOME]!!.push(homeFragment)
+            val transaction: FragmentTransaction = manager.beginTransaction()
+            transaction.add(R.id.nav_host_fragment, homeFragment).commit()
+        }else{
+            selectedTab(TAB_HOME)
+        }
     }
 
     /**

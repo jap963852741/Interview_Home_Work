@@ -1,6 +1,7 @@
 package com.jap.interviewhomework.Repository
 
-import com.jap.interviewhomework.Repository.remotedatasource.LoginResponse
+import com.jap.interviewhomework.Repository.bean.LoginResponse
+import com.jap.interviewhomework.Repository.network.LoginDataSource
 import io.reactivex.rxjava3.core.Observable
 
 /**

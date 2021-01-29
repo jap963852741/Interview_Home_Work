@@ -1,15 +1,13 @@
 package com.jap.interviewhomework
 
-import android.provider.SyncStateContract.Helpers.update
 import android.util.Log
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import com.jap.interviewhomework.Repository.UpdateDataSource
+import com.jap.interviewhomework.Repository.network.UpdateDataSource
 import com.jap.interviewhomework.Repository.UpdateRepository
-import com.jap.interviewhomework.Repository.remotedatasource.ApiInterface
-import com.jap.interviewhomework.Repository.remotedatasource.LoginResponse
-import com.jap.interviewhomework.Repository.remotedatasource.NewsResponse
-import com.jap.interviewhomework.Repository.remotedatasource.UpdateResponse
-import com.jap.interviewhomework.ui.home.NewsResult
+import com.jap.interviewhomework.Repository.network.api.ApiInterface
+import com.jap.interviewhomework.Repository.bean.LoginResponse
+import com.jap.interviewhomework.Repository.bean.NewsResponse
+import com.jap.interviewhomework.Repository.bean.UpdateResponse
 import com.jap.interviewhomework.ui.update.Timezone
 import io.reactivex.rxjava3.core.Observer
 import io.reactivex.rxjava3.disposables.Disposable

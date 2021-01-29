@@ -1,4 +1,4 @@
-package com.jap.interviewhomework.Repository.remotedatasource
+package com.jap.interviewhomework.Repository.bean
 
 import java.io.Serializable
 

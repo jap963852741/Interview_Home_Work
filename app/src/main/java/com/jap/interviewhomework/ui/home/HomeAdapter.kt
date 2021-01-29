@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.jap.interviewhomework.Repository.remotedatasource.News
+import com.jap.interviewhomework.Repository.bean.News
 import com.jap.interviewhomework.databinding.ItemHomeBinding
 
 class HomeAdapter(

@@ -1,5 +1,8 @@
-package com.jap.interviewhomework.Repository.remotedatasource
+package com.jap.interviewhomework.Repository.network.api
 
+import com.jap.interviewhomework.Repository.bean.LoginResponse
+import com.jap.interviewhomework.Repository.bean.NewsResponse
+import com.jap.interviewhomework.Repository.bean.UpdateResponse
 import com.jap.interviewhomework.ui.update.Timezone
 import io.reactivex.rxjava3.core.Observable
 import retrofit2.http.*

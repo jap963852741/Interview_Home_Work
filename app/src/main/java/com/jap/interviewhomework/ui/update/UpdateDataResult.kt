@@ -1,6 +1,6 @@
 package com.jap.interviewhomework.ui.update
 
-import com.jap.interviewhomework.Repository.remotedatasource.UpdateResponse
+import com.jap.interviewhomework.Repository.bean.UpdateResponse
 import java.io.Serializable
 
 /**

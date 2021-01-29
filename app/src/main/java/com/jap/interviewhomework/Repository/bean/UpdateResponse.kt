@@ -1,4 +1,4 @@
-package com.jap.interviewhomework.Repository.remotedatasource
+package com.jap.interviewhomework.Repository.bean
 
 data class UpdateResponse (
     val updatedAt: String,
