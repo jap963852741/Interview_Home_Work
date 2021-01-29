@@ -43,6 +43,7 @@ class ExampleInstrumentedTest {
         val observer: Observer<LoginResponse> = object : Observer<LoginResponse> {
             override fun onNext(item: LoginResponse) {
                 Log.e("TAG", "next:$item")
+                Log.e("TAG", "next:${item.ACL}")
             }
             override fun onError(e: Throwable) {
                 println("Error Occured ${e.message}")

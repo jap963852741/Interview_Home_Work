@@ -1,6 +1,5 @@
 package com.jap.interviewhomework.util
 
-import android.util.Log
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
@@ -28,6 +27,7 @@ class FragmentSwitchUtil constructor(fragmanager  : FragmentManager){
         private var INSTANCE: FragmentSwitchUtil? = null
     }
 
+    //singleton
     fun getInstance(): FragmentSwitchUtil {
         if (INSTANCE == null) {
             INSTANCE = FragmentSwitchUtil(manager)
@@ -51,7 +51,6 @@ class FragmentSwitchUtil constructor(fragmanager  : FragmentManager){
       *    We are adding a new fragment which is not present in stack. So add to stack is true.
       */
     fun selectedTab(tabId: String) {
-        Log.e("mStacks",mStacks.toString())
         mCurrentTab = tabId
         if (mStacks!![tabId]!!.size == 0) {
             if (tabId == TAB_UPDATE) {
@@ -64,8 +63,8 @@ class FragmentSwitchUtil constructor(fragmanager  : FragmentManager){
 
     /**
      * 切换fragment
-     * @param from 要隐藏的fragment
-     * @param to 要显示的fragment
+     * @param from the fragment want to hide
+     * @param to the fragment want to show
      */
     fun switchContent(
         from: Fragment?,
@@ -73,13 +72,10 @@ class FragmentSwitchUtil constructor(fragmanager  : FragmentManager){
         tag :String?,
         init : Boolean
     ) {
-
         if (init) mStacks!![tag]!!.push(to)
         if (from !== to) {
             val transaction: FragmentTransaction = manager.beginTransaction()
-            //此处必须要进行判断，因为同一个fragment只能被add一次，否则会发生异常
             if (!to.isAdded) {
-                //未添加
                 transaction.hide(from!!)
                 transaction.add(R.id.nav_host_fragment, to)
                 transaction.show(to).commit()
@@ -92,14 +88,11 @@ class FragmentSwitchUtil constructor(fragmanager  : FragmentManager){
 
     fun getNowFragment() : Fragment?{
         val fragments: List<Fragment> = manager.getFragments()
-        if (fragments != null) {
-            val i = fragments.size-1
-            for (i in 0..fragments.size-1) {
-                val j = fragments.size - 1 - i
-                if (fragments[j] != null && fragments[j].isVisible ) {
-//                    Log.i("FragmentSwitchUtil","getNowFragment : " + fragments[j].toString() )
-                    return fragments[j]
-                }
+        val i = fragments.size-1
+        for (i in 0..fragments.size-1) {
+            val j = fragments.size - 1 - i
+            if (fragments[j].isVisible) {
+                return fragments[j]
             }
         }
         return null

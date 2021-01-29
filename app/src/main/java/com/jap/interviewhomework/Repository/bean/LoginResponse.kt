@@ -3,7 +3,6 @@ package com.jap.interviewhomework.Repository.bean
 import java.io.Serializable
 
 data class LoginResponse (
-//    @SerializedName("objectID")
     val objectId: String,
     val username: String,
     val code: String,
@@ -13,16 +12,6 @@ data class LoginResponse (
     val updatedAt: String,
     val timezone: Long,
     val parameter: Long,
-    val ACL: ACL,
+    val ACL: Any,
     val sessionToken: String
-): Serializable
-
-data class ACL (
-    //TODO 有可能是變數
-    val WkuKfCAdGq: WkuKfCAdGq
-): Serializable
-
-data class WkuKfCAdGq (
-    val read: Boolean,
-    val write: Boolean
 ): Serializable

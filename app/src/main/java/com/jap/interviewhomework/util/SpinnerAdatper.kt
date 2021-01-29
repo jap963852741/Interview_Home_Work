@@ -26,7 +26,6 @@ open class SpinnerAdatper<String>(context: Context, resource: Int, list: ArrayLi
         this.vi = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
     }
 
-
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         var retView: View = super.getView(position, convertView, parent)
         retView.textAlignment = View.TEXT_ALIGNMENT_CENTER

@@ -8,7 +8,6 @@ import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
 import android.view.View
 import android.view.inputmethod.EditorInfo
-import android.widget.Button
 import android.widget.EditText
 import android.util.Log
 import android.widget.Toast
@@ -18,7 +17,6 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.jap.interviewhomework.R
 import com.jap.interviewhomework.databinding.ActivityLoginBinding
-import com.jap.interviewhomework.databinding.ActivityMainBinding
 import com.jap.interviewhomework.ui.main.MainActivity
 
 class LoginActivity : AppCompatActivity() {
@@ -81,16 +79,10 @@ class LoginActivity : AppCompatActivity() {
                 updateUiWithUser()
                 val intent = Intent(this, MainActivity::class.java).apply {
                     putExtra(LOGIN_DATA, loginResult.success)
-                    Log.e("LOGIN_DATA",loginResult.success.toString())
                     setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK) //next activity never back
                 }
                 startActivity(intent)
             }
-//            setResult(Activity.RESULT_OK)
-
-
-            //Complete and destroy login activity once successful
-//            finish()
         })
 
         username.afterTextChanged {
