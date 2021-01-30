@@ -5,7 +5,6 @@ import androidx.hilt.Assisted
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.*
 import com.jap.interviewhomework.R
-import com.jap.interviewhomework.Repository.network.UpdateDataSource
 import com.jap.interviewhomework.Repository.UpdateRepository
 import com.jap.interviewhomework.Repository.bean.UpdateResponse
 import com.jap.interviewhomework.ui.login.LoginDataResult
@@ -44,7 +43,7 @@ class UpdateViewModel @ViewModelInject constructor(
             }
         }
 
-        UpdateRepository(UpdateDataSource()).update(sessionToken,objectId,timezone)
+        updateRepository.update(sessionToken,objectId,timezone)
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(observer)
 //            .subscribeOn(Schedulers.newThread())

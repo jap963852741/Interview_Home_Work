@@ -1,8 +1,6 @@
 package com.jap.interviewhomework.ui.update
 
-import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.*
@@ -12,23 +10,15 @@ import android.widget.Toast
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import androidx.core.view.get
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.jap.interviewhomework.R
 import com.jap.interviewhomework.databinding.FragmentUpdateBinding
-import com.jap.interviewhomework.ui.login.LoginActivity.Companion.LOGIN_DATA
-import com.jap.interviewhomework.ui.login.LoginDataResult
-import com.jap.interviewhomework.ui.main.MainActivity
 import com.jap.interviewhomework.util.FragmentSwitchUtil
 import com.jap.interviewhomework.util.FragmentSwitchUtil.Companion.TAB_HOME
 import com.jap.interviewhomework.util.SpinnerAdatper
-import kotlinx.android.synthetic.main.item_home.*
 import kotlin.properties.Delegates
-
-//import org.angmarch.views.NiceSpinner
-//import org.angmarch.views.OnSpinnerItemSelectedListener
 
 class UpdateFragment : Fragment(){
 
